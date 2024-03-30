@@ -1,0 +1,27 @@
+{
+  "name": "book_directory",
+  "version": "1.0.0",
+  "description": "The \"Book Directory Web App\" is designed to provide users with a comprehensive collection of books, along with features for browsing, searching, and contributing to the database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amartyakaushik/Book-Directory-Web-App.git"
+  },
+  "author": "Amartya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amartyakaushik/Book-Directory-Web-App/issues"
+  },
+  "homepage": "https://github.com/Amartyakaushik/Book-Directory-Web-App#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
