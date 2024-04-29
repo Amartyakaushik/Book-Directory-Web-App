@@ -1,192 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Directory</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login / Register</title>
+  <link rel="stylesheet" href="styles.css">
 
-  h1, h2 {
-    text-align: center;
-  }
+  <style>
+    /* Global Styles */
 
-  #bookList, #bookDetails, #addBookForm, #updateBookForm {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://img.freepik.com/free-photo/book-composition-with-open-book_23-2147690555.jpg'); /* Your background image here */
+      background-size: cover;
+    }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-  li {
-    cursor: pointer;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-  }
+    /* Header Styles */
 
-  li:hover {
-    background-color: #f9f9f9;
-  }
+    header {
+      background-color: #000000a1; /* Transparent background */
+      color: #d2d2d2ee;
+      padding: 20px 0;
+    }
 
-  button {
-    display: block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    .logo h1 {
+      margin: 0;
+      font-size: 30px;
+    }
 
-  button:hover {
-    background-color: #0056b3;
-  }
+    .logo {
+      display: flex;
+      align-items: center; /* Vertically align items */
+    }
 
-  input[type="text"], textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-</style>
+    .register-link {
+  position: absolute;
+  top: 5%;
+  right: 20px;
+}
+
+.register-link a {
+  color: white;
+  text-decoration: none;
+}
+
+    .logo img {
+      width: 40px; /* Adjust width as needed */
+      height: auto; /* Maintain aspect ratio */
+      margin-right: 10px; /* Add space between the image and text */
+    }
+
+    /* Image Section Styles */
+
+    .image-section {
+      background-image: url('https://img.freepik.com/free-photo/book-composition-with-open-book_23-2147690555.jpg'); /* Your background image here */
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Login Section Styles */
+
+    .login-section {
+      background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+      padding: 50px 0;
+    }
+
+    .login-box {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: rgba(225, 225, 225, 0.381);
+      border-radius: 8px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer Styles */
+
+    footer {
+      background-color: #343a40;
+      color: #fff;
+      padding: 50px 0;
+    }
+
+    .footer-columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .footer-column {
+      flex: 0 0 calc(25% - 20px);
+      max-width: calc(25% - 20px);
+      margin-bottom: 20px;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 15px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 5px;
+    }
+
+    
+
+  </style>
+
 </head>
 <body>
-<h1>Book Directory</h1>
-
-<!-- Display List of Books -->
-<div id="bookList">
-  <h2>List of Books</h2>
-  <ul id="books"></ul>
-</div>
-
-<!-- Display Book Details -->
-<div id="bookDetails" style="display:none;">
-  <h2>Book Details</h2>
-  <div id="bookInfo"></div>
-  <button onclick="goBack()">Back to List</button>
-</div>
-
-<!-- Add New Book Form -->
-<div id="addBookForm" style="display:none;">
-  <h2>Add New Book</h2>
-  <form id="newBookForm">
-    <input type="text" name="title" placeholder="Title" required><br>
-    <input type="text" name="isbn" placeholder="ISBN" required><br>
-    <!-- Add more input fields for book details -->
-    <button type="submit">Add Book</button>
-  </form>
-  <button onclick="goBack()">Cancel</button>
-</div>
-
-<!-- Update Book Form -->
-<div id="updateBookForm" style="display:none;">
-  <h2>Update Book</h2>
-  <form id="editBookForm">
-    <!-- Input fields for updating book details will be dynamically added here -->
-    <button type="submit">Update Book</button>
-  </form>
-  <button onclick="goBack()">Cancel</button>
-</div>
-
-<!-- JavaScript code -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const baseURL = "http://localhost:5000/api/v1/books";
-
-  // Function to fetch and display all books
-  const fetchBooks = async () => {
-    try {
-      const response = await fetch(baseURL);
-      const books = await response.json();
-      const booksList = document.getElementById("books");
-      booksList.innerHTML = "";
-      books.forEach(book => {
-        const listItem = document.createElement("li");
-        listItem.textContent = `${book.title} by ${book.authors.join(", ")}`;
-        listItem.addEventListener("click", () => showBookDetails(book.isbn));
-        booksList.appendChild(listItem);
-      });
-    } catch (error) {
-      console.error("Error fetching books:", error);
-    }
-  };
-
-  // Function to display book details
-  const showBookDetails = async (isbn) => {
-    try {
-      const response = await fetch(`${baseURL}/${isbn}`);
-      const book = await response.json();
-      const bookInfo = document.getElementById("bookInfo");
-      bookInfo.innerHTML = `
-        <p><strong>Title:</strong> ${book.title}</p>
-        <p><strong>Authors:</strong> ${book.authors.join(", ")}</p>
-        <!-- Add more details here as needed -->
-      `;
-      document.getElementById("bookList").style.display = "none";
-      document.getElementById("bookDetails").style.display = "block";
-    } catch (error) {
-      console.error("Error fetching book details:", error);
-    }
-  };
-
-  // Function to show add new book form
-  const showAddBookForm = () => {
-    document.getElementById("bookList").style.display = "none";
-    document.getElementById("addBookForm").style.display = "block";
-  };
-
-  // Function to handle form submission for adding a new book
-  const addNewBook = async (event) => {
-    event.preventDefault();
-    // Get form data and make POST request to add new book
-    // Display success message or handle errors
-  };
-
-  // Function to show update book form
-  const showUpdateBookForm = (isbn) => {
-    document.getElementById("bookList").style.display = "none";
-    document.getElementById("updateBookForm").style.display = "block";
-    // Populate form fields with existing book details for editing
-  };
-
-  // Function to handle form submission for updating a book
-  const updateBook = async (event) => {
-    event.preventDefault();
-    // Get form data and make PUT request to update book
-    // Display success message or handle errors
-  };
-
-  // Function to go back to book list view
-  const goBack = () => {
-    document.getElementById("bookList").style.display = "block";
-    document.getElementById("bookDetails").style.display = "none";
-    document.getElementById("addBookForm").style.display = "none";
-    document.getElementById("updateBookForm").style.display = "none";
-  };
-
-  // Event listeners for form submissions
-  document.getElementById("newBookForm").addEventListener("submit", addNewBook);
-  document.getElementById("editBookForm").addEventListener("submit", updateBook);
-
-  // Fetch and display books when page loads
-  fetchBooks();
-});
-</script>
+  <header style="background-color: rgba(0, 0, 0, 0);">
+    <div class="logo">
+      <a href="#"><img src="iconsBOOKLY.png" alt="Bookly Icon"></a>
+      <h1>Bookly</h1>
+    </div>
+    <div class="register-link">
+      <a href="registration.html">Register</a>
+    </div>
+  </header>
+  
+  
+  <section class="login-section">
+    <div class="login-box">
+      <h2>User Login</h2>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn-login">Login Now</button>
+      </form>
+      <p>Don't have an account yet? <a href="registration.html">Create an Account</a></p>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Popular Cities</h3>
+          <ul>
+            <li>Karachi</li>
+            <li>Islamabad</li>
+            <li>Lahore</li>
+            <li>Rawalpindi</li>
+            <li>Multan</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Popular Cuisines</h3>
+          <ul>
+            <li>Apple Juice</li>
+            <li>BBQ</li>
+            <li>Chicken Roast</li>
+            <li>Hot Dogs</li>
+            <li>Prawns</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Menu</h3>
+          <ul>
+            <li>Home</li>
+            <li>Contact</li>
+            <li>FAQs</li>
+            <li>How it works</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <p>info@quickfood.com</p>
+          <p>+1 321 828 6062</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
